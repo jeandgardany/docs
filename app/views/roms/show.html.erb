@@ -1,0 +1,31 @@
+<h1>Pasta</h1>
+<p>
+  <strong>Nome:</strong>
+  <%= @rom.nome %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @rom.user.nome %>
+</p>
+
+<% if @rom.documentos.attached? %>
+	<p>
+	  <strong>Documentos:</strong><br>
+	  	<% @rom.documentos.each do |doc| %>
+	  		<% if doc.previewable? %>
+	  			<%= link_to image_tag(doc.preview(resize: "200x200")), doc %>
+	  			<%=  link_to 'Deletar', doc, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
+	  		<% elsif doc.image? %>
+	  			<%= link_to image_tag(doc, width: 100), doc %>
+	  			<%=  link_to 'Deletar', doc, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
+	  		<% else %>
+	  			<%= link_to doc.filename, doc %>
+	  			<%=  link_to 'Deletar', doc.purge, data: { confirm: 'Você tem certeza?' } %><br>
+	  		<% end %>
+	  	<% end %>
+	</p>
+<% end %>
+
+<%= link_to 'Editar', edit_rom_path(@rom) %> |
+<%= link_to 'Voltar', roms_path %>

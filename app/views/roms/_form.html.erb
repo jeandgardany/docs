@@ -1,0 +1,31 @@
+<%= form_with(model: rom, local: true) do |form| %>
+  <% if rom.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rom.errors.count, "error") %> prohibited this rom from being saved:</h2>
+
+      <ul>
+      <% rom.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :documentos %>
+    <%= form.file_field :documentos, multiple: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
