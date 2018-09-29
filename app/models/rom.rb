@@ -1,5 +1,6 @@
 class Rom < ApplicationRecord
   belongs_to :user
+  #belongs_to :compartilhado
   has_many_attached :documentos
 
   scope :with_eager_loaded_documentos, -> { eager_load(documentos_attachments: :blob) }
@@ -10,5 +11,13 @@ class Rom < ApplicationRecord
     @documento.purge
     redirect_to @current_page
   end
+
+  def user_nome
+    	if self.sala.blank?
+      		"Sem Cadastro"
+    	else
+      		self.sala.user.nome
+    	end
+    end
 
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :usuarios
+  resources :compartilhados
   resources :roms
   devise_for :users
   root to: "roms#index"

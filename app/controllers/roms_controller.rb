@@ -4,7 +4,8 @@ class RomsController < ApplicationController
   # GET /roms
   # GET /roms.json
   def index
-    @roms = Rom.all
+    @roms = Rom.all.where(id: current_user.id)
+    @compartilhados = Compartilhado.all.where(id: current_user.id)
   end
 
   # GET /roms/1

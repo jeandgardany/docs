@@ -1,0 +1,52 @@
+<%= form_with(model: compartilhado, local: true) do |form| %>
+  <% if compartilhado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(compartilhado.errors.count, "error") %> prohibited this compartilhado from being saved:</h2>
+
+      <ul>
+      <% compartilhado.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome, 'Nome:' %>
+    <%= form.text_field :nome %>
+  </div>
+  
+  <div class="field">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :arquivos, 'Arquivos:' %>
+    <%= form.file_field :arquivos, multiple: true %>
+  </div>
+
+  <div class="form-group">
+    <h5 class="control-label col-lg-2">Usuários</h5>
+    <div id="usuarios">
+      <%= form.fields_for :usuarios do |usuario| %>
+        <!-- COMENTÁRIO:
+          é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
+          no nosso caso _experience_fields.html.erb
+        -->
+        <%= render 'usuario_fields', f: usuario %>
+      <% end %>
+   
+      <!-- COMENTÁRIO:
+        O link para adicionar dinamicamente os fields deve estar dentro de uma div .links
+      -->
+      <div class="links">
+        <!-- COMENTÁRIO: O link_to_add_association é um helper provido pela gem -->
+        <%= link_to_add_association 'add usuário', form, :usuarios, :class => 'control-label col-lg-12' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
