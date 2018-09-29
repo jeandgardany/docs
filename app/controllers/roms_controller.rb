@@ -72,6 +72,6 @@ class RomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rom_params
-      params.require(:rom).permit(:nome, :user_id, documentos:[])
+      params.require(:rom).permit(:nome, :user_id, documentos:[], anexos:[])
     end
 end

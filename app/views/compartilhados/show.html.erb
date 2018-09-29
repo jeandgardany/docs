@@ -9,9 +9,12 @@
 </p>
 
 <strong>Usuarios Compartilhando:</strong><br>
-<td><% @compartilhado.usuarios.each do |usuario| %>
-     <%= "Nome: #{usuario.user_id}" %></td>
-    <% end %>
+<td><%= @compartilhado.user.nome %></td>
+        <td><% @compartilhado.usuarios.each do |usuario| %>
+        <p>
+        <%= "Nome: #{usuario.user}" %>
+        </p>
+        <% end %>
 
 <% if @compartilhado.arquivos.attached? %>
 	<p>
@@ -32,4 +35,5 @@
 <% end %>
 
 <%= link_to 'Editar', edit_compartilhado_path(@compartilhado) %> |
+<%= link_to 'Apagar', @compartilhado, method: :delete, data: { confirm: 'Você tem certeza?' } %> |
 <%= link_to 'Voltar', roms_path %>

@@ -16,6 +16,20 @@
     <%= form.text_field :nome %>
   </div>
 
+  <%= image_tag "pasta.png", width: 50, height: 50 %>
+  <%= image_tag "favorito.png", width: 50, height: 50 %>
+
+  <select name="icone" id="icone_id">
+  <option value="1"><%= image_tag "pasta.png", :width => 50 %></option>
+  <option value="2"><%= image_tag "favorito.png", :width => 50 %></option>
+  </select>
+
+  <div class="field">
+    <%= form.label :anexos %>
+    <%= form.collection_select :anexos, Image.all, :id, :anexos, prompt: 'Selecione' %>
+    
+  </div>
+
   <div class="field">
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
