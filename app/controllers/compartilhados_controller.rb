@@ -6,14 +6,15 @@ class CompartilhadosController < ApplicationController
   def index
     @compartilhados = Compartilhado.all
     @roms = Rom.order(nome: :asc)
-    @usuarios = @compartilhado.usuarios.build
+    #@usuarios = @compartilhado.usuarios.build
+    @usuarios = @compartilhado.usuarios
   end
 
   # GET /compartilhados/1
   # GET /compartilhados/1.json
   def show
     @users = User.all
-    #@user = User.find(params[:id])
+    @user = @compartilhado.users.build
     @usuarios = @compartilhado.usuarios.build
     @compartilhados = Compartilhado.all.where(id: current_user.id)
     #@usuarios = Usuario.all
@@ -74,6 +75,7 @@ class CompartilhadosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_compartilhado
       @compartilhado = Compartilhado.find(params[:id])
+      @usuarios = @compartilhado.usuarios
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

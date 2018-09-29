@@ -15,6 +15,7 @@
 	  	<% @rom.documentos.each do |doc| %>
 	  		<% if doc.previewable? %>
 	  			<%= link_to image_tag(doc.preview(resize: "200x200")), doc %>
+	  			<!--%= link_to "X", arquivo_rom_path(@arquivo, @rom), method: :delete, data: { confirm: "Tem certeza?" } %-->
 	  			<%=  link_to 'Deletar', doc, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
 	  		<% elsif doc.image? %>
 	  			<%= link_to image_tag(doc, width: 100), doc %>

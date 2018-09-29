@@ -4,8 +4,8 @@ class RomsController < ApplicationController
   # GET /roms
   # GET /roms.json
   def index
-    @roms = Rom.all.where(id: current_user.id)
-    @compartilhados = Compartilhado.all.where(id: current_user.id)
+    @roms = Rom.all.where(user_id: current_user.id)
+    @compartilhados = Compartilhado.joins(:usuarios).where(usuarios: {user_id: current_user.id})
   end
 
   # GET /roms/1
@@ -67,6 +67,7 @@ class RomsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_rom
       @rom = Rom.find(params[:id])
+      @compartilhados = @rom.compartilhados
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

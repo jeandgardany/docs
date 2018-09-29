@@ -30,8 +30,9 @@
 <table>
   <thead>
     <tr>
-      <th>Pasta</th>
-      <th>Compartilhando</th>
+      <th>Pasta:</th>
+      <th>Usuário:</th>
+      <th>Compartilhando:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -40,6 +41,7 @@
     <% @compartilhados.each do |compartilhado| %>
       <tr>
         <td><%= compartilhado.nome %></td>
+        <td><%= compartilhado.user.nome %></td>
         <td><% compartilhado.usuarios.each do |usuario| %>
         <p>
         <%= "Nome: #{usuario.user.nome}" %>
@@ -48,7 +50,7 @@
         <td><%= compartilhado.nome %></td>
         <td><%= link_to 'Mostrar', compartilhado %></td>
         <td><%= link_to 'Editar', edit_compartilhado_path(compartilhado) %></td>
-        <td><%= link_to 'Apagar', compartilhado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Apagar', compartilhado, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>

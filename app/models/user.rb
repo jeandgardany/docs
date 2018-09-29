@@ -7,5 +7,5 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :roms, dependent: :destroy
-  
+  has_many :compartilhados, through: :usuarios
 end

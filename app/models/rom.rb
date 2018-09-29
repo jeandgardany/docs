@@ -1,10 +1,11 @@
 class Rom < ApplicationRecord
   belongs_to :user
-  #belongs_to :compartilhado
+  has_many :compartilhados
   has_many_attached :documentos
+  has_many :usuarios
 
   scope :with_eager_loaded_documentos, -> { eager_load(documentos_attachments: :blob) }
-  #accepts_nested_attributes_for :documentos, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :compartilhados, :usuarios, reject_if: :all_blank, allow_destroy: true
 
   def delete_documento_attachment
     @documento = ActiveStorage::Attachment.find(params[:id])

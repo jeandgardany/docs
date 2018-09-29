@@ -3,10 +3,14 @@
   <strong>Nome:</strong>
   <%= @compartilhado.nome %>
 </p>
+<p>
+  <strong>Usuario:</strong>
+  <%= @compartilhado.user.nome %>
+</p>
 
 <strong>Usuarios Compartilhando:</strong><br>
 <td><% @compartilhado.usuarios.each do |usuario| %>
-     <%= usuario.user_nome %></td>
+     <%= "Nome: #{usuario.user_id}" %></td>
     <% end %>
 
 <% if @compartilhado.arquivos.attached? %>
