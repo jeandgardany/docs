@@ -1,4 +1,4 @@
-<div align="center"><h2>Pastas</h2></div>
+<div align="center"><h4>Pastas</h4></div>
 <table>
   <thead>
     <tr>
@@ -10,7 +10,7 @@
   <tbody>
     <% @roms.each do |rom| %>
       <tr>
-        <th><%= link_to image_tag("fav2.png", width: 50, height: 50), rom %><br><%= link_to rom.nome, rom %></th>
+        <th><%= link_to image_tag("fav2.png", width: 40, height: 40), rom %><br><%= link_to rom.nome, rom %></th>
         <td><!--%= rom.user.nome %--></td>
         <td><!--%= link_to 'Mostrar', rom %--></td>
         <td><!--%= link_to 'Editar', edit_rom_path(rom) %--></td>
@@ -24,12 +24,12 @@
 
 <%= link_to 'Nova Pasta', new_rom_path, :class => 'btn btn-outline-primary btn-sm' %>
 
-<div align="center"><h2>Compartilhados</h2></div>
+<div align="center"><h4>Compartilhados</h4></div>
 
 <table>
   <thead>
     <tr>
-      <th>Pasta:</th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -37,7 +37,7 @@
   <tbody>
     <% @compartilhados.each do |compartilhado| %>
       <tr>
-      <th><%= link_to image_tag("pasta.png", width: 50, height: 50), compartilhado %><br><%= compartilhado.nome %></th>
+      <th><%= link_to image_tag("pasta.png", width: 40, height: 40), compartilhado %><br><%= compartilhado.nome %></th>
       </tr>
     <% end %>
   </tbody>
