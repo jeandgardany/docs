@@ -31,6 +31,12 @@ class CompartilhadosController < ApplicationController
   def edit
   end
 
+  def delete_arquivo_attachment
+  @arquivo = ActiveStorage::Blob.find_signed(params[:id])
+  @arquivo.purge
+  redirect_to root_path
+  end
+
   # POST /compartilhados
   # POST /compartilhados.json
   def create

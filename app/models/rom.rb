@@ -4,7 +4,6 @@ class Rom < ApplicationRecord
   has_many_attached :documentos
   has_many_attached :anexos
   has_many :usuarios
-  has_many :images
 
   scope :with_eager_loaded_documentos, -> { eager_load(documentos_attachments: :blob) }
   accepts_nested_attributes_for :compartilhados, :usuarios, reject_if: :all_blank, allow_destroy: true

@@ -1,5 +1,5 @@
 class RomsController < ApplicationController
-  before_action :set_rom, only: [:show, :edit, :update, :destroy]
+  before_action :set_rom, only: [:show, :edit, :update, :destroy, :delete_documento_attachment]
 
   # GET /roms
   # GET /roms.json
@@ -21,6 +21,18 @@ class RomsController < ApplicationController
   # GET /roms/1/edit
   def edit
     @documento = @rom.documentos
+  end
+
+  def delete_anexo_attachment
+  @anexo = ActiveStorage::Blob.find_signed(params[:id])
+  @anexo.purge
+  redirect_to rom_url
+  end
+
+  def delete_documento_attachment
+  #@documento = ActiveStorage::Blob.find(params[:id])
+  #@documento.purge
+  redirect_to rom_url
   end
 
   # POST /roms
@@ -67,6 +79,7 @@ class RomsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_rom
       @rom = Rom.find(params[:id])
+      @documentos = @rom.documentos
       @compartilhados = @rom.compartilhados
     end
 
