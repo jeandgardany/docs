@@ -2,7 +2,6 @@ class Rom < ApplicationRecord
   belongs_to :user
   has_many :compartilhados
   has_many_attached :documentos
-  has_many_attached :anexos
   has_many :usuarios
 
   scope :with_eager_loaded_documentos, -> { eager_load(documentos_attachments: :blob) }

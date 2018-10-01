@@ -5,27 +5,6 @@
 </p>
 
 <p>
-<% if @rom.anexos.attached? %>
-	<p>
-	  <strong>Imagens:</strong><br>
-	  	<% @rom.anexos.each do |anexo| %>
-	  		<% if anexo.previewable? %>
-	  			<%= link_to image_tag(anexo.preview(resize: "200x200")), anexo %>
-	  			<!--%= link_to "X", arquivo_rom_path(@arquivo, @rom), method: :delete, data: { confirm: "Tem certeza?" } %-->
-	  			<%=  link_to 'Deletar', anexo, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
-	  		<% elsif anexo.rom? %>
-	  			<%= link_to image_tag(anexo, width: 100), anexo %>
-	  			<%=  link_to 'Deletar', anexo, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
-	  		<% else %>
-	  			<%= link_to anexo.filename, anexo %>
-	  			<%=  link_to 'Deletar', anexo, method: :delete_anexo_attachment, data: { confirm: 'Você tem certeza?' } %><br>
-	  		<% end %>
-	  	<% end %>
-	</p>
-<% end %>
-</p>
-
-<p>
   <strong>User:</strong>
   <%= @rom.user.nome %>
 </p>
@@ -33,16 +12,16 @@
 <% if @rom.documentos.attached? %>
 	<p>
 	  <strong>Documentos:</strong><br>
-	  	<% @rom.documentos.each do |doc| %>
+	  	<% @rom.documentos.each do |doc| %><br>
 	  		<% if doc.previewable? %>
 	  			<%= link_to image_tag(doc.preview(resize: "200x200")), doc %>
-	  			<%= link_to 'Deletar', doc.purge, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
+	  			<%= link_to 'Deletar', doc, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
 	  		<% elsif doc.image? %>
 	  			<%= link_to image_tag(doc, width: 100), doc %>
-	  			<%= link_to 'Deletar', doc.purge, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
+	  			<%= link_to 'Deletar', doc, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
 	  		<% else %>
 	  			<%= link_to doc.filename, doc %>
-	  			<%= link_to 'Deletar', doc.purge, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
+	  			<%= link_to 'Deletar', doc, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
 	  		<% end %>
 	  	<% end %>
 	</p>

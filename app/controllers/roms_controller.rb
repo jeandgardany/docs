@@ -1,5 +1,5 @@
 class RomsController < ApplicationController
-  before_action :set_rom, only: [:show, :edit, :update, :destroy, :delete_documento_attachment]
+  before_action :set_rom, only: [:show, :edit, :update, :destroy]
 
   # GET /roms
   # GET /roms.json
@@ -23,17 +23,17 @@ class RomsController < ApplicationController
     @documento = @rom.documentos
   end
 
-  def delete_anexo_attachment
-  @anexo = ActiveStorage::Blob.find_signed(params[:id])
-  @anexo.purge
-  redirect_to rom_url
-  end
+  #def delete_anexo_attachment
+  #@anexo = ActiveStorage::Blob.find_signed(params[:id])
+  #@anexo.purge
+  #redirect_to rom_url
+  #end
 
-  def delete_documento_attachment
+  #def delete_documento_attachment
   #@documento = ActiveStorage::Blob.find(params[:id])
   #@documento.purge
-  redirect_to rom_url
-  end
+  #redirect_to rom_url
+  #end
 
   # POST /roms
   # POST /roms.json

@@ -7,7 +7,7 @@ class CompartilhadosController < ApplicationController
     @compartilhados = Compartilhado.all
     @roms = Rom.order(nome: :asc)
     #@usuarios = @compartilhado.usuarios.build
-    @usuarios = @compartilhado.usuarios
+    #@usuarios = @compartilhado.usuarios
   end
 
   # GET /compartilhados/1
@@ -15,27 +15,27 @@ class CompartilhadosController < ApplicationController
   def show
     @users = User.all
     @user = @compartilhado.users.build
-    @usuarios = @compartilhado.usuarios.build
-    @compartilhados = Compartilhado.all.where(id: current_user.id)
-    #@usuarios = Usuario.all
+    @usuarios = @compartilhado.usuarios.where.not(id: nil)
+    @compartilhados = Compartilhado.where(id: current_user.id).where.not(usuario_id: nil)
+    @compart = @compartilhado.usuarios
   end
 
   # GET /compartilhados/new
   def new
     @compartilhado = Compartilhado.new
     #@user = @compartilhado.users.build
-    @user = @compartilhado.users.build
+    #@user = @compartilhado.users
   end
 
   # GET /compartilhados/1/edit
   def edit
   end
 
-  def delete_arquivo_attachment
-  @arquivo = ActiveStorage::Blob.find_signed(params[:id])
-  @arquivo.purge
-  redirect_to root_path
-  end
+  #def delete_arquivo_attachment
+  #@arquivo = ActiveStorage::Blob.find_signed(params[:id])
+  #@arquivo.purge
+  #redirect_to root_path
+  #end
 
   # POST /compartilhados
   # POST /compartilhados.json
@@ -82,6 +82,7 @@ class CompartilhadosController < ApplicationController
     def set_compartilhado
       @compartilhado = Compartilhado.find(params[:id])
       @usuarios = @compartilhado.usuarios
+      @arquivos = @compartilhado.arquivos
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -9,17 +9,16 @@
 </p>
 
 <strong>Usuarios Compartilhando:</strong><br>
-<td><%= @compartilhado.user.nome %></td>
-        <td><% @compartilhado.usuarios.each do |usuario| %>
-        <p>
-        <%= "Nome: #{usuario.user}" %>
-        </p>
-        <% end %>
+	<% @usuarios.each do |user| %>
+	  <p>
+		<%= "Nome: #{user.user.nome}" %>
+	  </p>
+	<% end %>
 
 <% if @compartilhado.arquivos.attached? %>
 	<p>
 	  <strong>Documentos:</strong><br>
-	  	<% @compartilhado.arquivos.each do |arquivo| %>
+	  	<% @compartilhado.arquivos.each do |arquivo| %><br>
 	  		<% if arquivo.previewable? %>
 	  			<%= link_to image_tag(arquivo.preview(resize: "200x200")), arquivo %>
 	  			<%=  link_to 'Deletar', arquivo, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
@@ -28,12 +27,12 @@
 	  			<%=  link_to 'Deletar', arquivo, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
 	  		<% else %>
 	  			<%= link_to arquivo.filename, arquivo %>
-	  			<%=  link_to 'Deletar', arquivo.purge, data: { confirm: 'Você tem certeza?' } %><br>
+	  			<%=  link_to 'Deletar', arquivo, data: { confirm: 'Você tem certeza?' } %><br>
 	  		<% end %>
 	  	<% end %>
 	</p>
 <% end %>
 
 <%= link_to 'Editar', edit_compartilhado_path(@compartilhado) %> |
-<%= link_to 'Apagar', @compartilhado, method: :delete, data: { confirm: 'Você tem certeza?' } %> |
+<%= link_to 'deletar', @compartilhado, method: :delete, data: { confirm: 'Você tem certeza?' } %> |
 <%= link_to 'Voltar', roms_path %>
