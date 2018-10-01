@@ -20,7 +20,7 @@
 	  <strong>Documentos:</strong><br>
 	  	<% @compartilhado.arquivos.each do |arquivo| %><br>
 	  		<% if arquivo.previewable? %>
-	  			<%= link_to image_tag(arquivo.preview(resize: "200x200")), arquivo %>
+	  			<%= link_to image_tag(arquivo.preview(resize: "100x100")), arquivo %>
 	  			<%=  link_to 'Deletar', arquivo, method: :delete, data: { confirm: 'Você tem certeza?' } %><br>
 	  		<% elsif arquivo.image? %>
 	  			<%= link_to image_tag(arquivo, width: 100), arquivo %>
